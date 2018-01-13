@@ -24,7 +24,8 @@ export default class TodoList extends Component {
           {/* listen for the submit event on the form and call the addItem method.
              Used onSubmit because button type is set to submit */}
           <form onSubmit={this.addItem}>
-            <input placeholder='enter task'></input>
+            {/* store reference to input element in _inputElement property */}
+            <input ref={(a) => this._inputElement = a} placeholder='enter task'></input>
             <button type='submit'>add</button>
           </form>
         </div>
