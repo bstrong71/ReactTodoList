@@ -6,7 +6,7 @@ export default class TodoList extends Component {
 
     // state includes items array to store various items
     this.state = {
-      items: [];
+      items: []
     };
 
     this.addItem = this.addItem.bind(this);
@@ -14,6 +14,26 @@ export default class TodoList extends Component {
 
   // addItem event handler
   addItem(e) {
+    // declare variable itemArray to store current value
+    var itemArray = this.state.items;
+    // check for input element content
+    if (this._inputElement !== '') {
+      // if content found, add it to start of itemArray along with a timestamp
+      itemArray.unshift({
+        text: this._inputElement.value,
+        key: Date.now()
+      });
+      // set state items property to itemArray
+      this.setState({
+        items: itemArray
+      });
+      // clear _inputElement to room for next item
+      this._inputElement.value = '';
+    }
+    console.log('Item Array: ', itemArray);
+    // Override event's default behavior. By default, when submitting a form,
+    // the page reloads and clears everything out. Don't want that here!
+    e.preventDefault();
 
   }
 
