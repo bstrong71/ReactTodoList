@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FlipMove from 'react-flip-move';
 
 export default class TodoItems extends Component {
   constructor(props, context) {
@@ -6,10 +7,19 @@ export default class TodoItems extends Component {
 
     this.createTasks = this.createTasks.bind(this);
   }
+  // define function called delete that takes key as argument
+  // Doesn't delete, but calls another delete function passed
+  delete(key) {
+    this.props.delete(key);
+  }
 
   // createTasks method returns list item with key and text
   createTasks(item) {
-    return <li key={item.key}>{item.text}</li>
+    // Listen for click event and associate it with event handler called delete.
+    // Using arrow function allows us to maintain both the default event argument
+    // while allowing us to pass in our own arguments as well (this is a JS quirk,
+    // not anything to do with React).
+    return <li onClick={() => this.delete(item.key)} key={item.key}>{item.text}</li>
   }
 
   render() {
@@ -20,7 +30,9 @@ export default class TodoItems extends Component {
 
     return(
       <ul className='theList'>
-        {listItems}
+        <FlipMove duration={250} easing='ease-out'>
+          {listItems}
+        </FlipMove>
       </ul>
     )
   }

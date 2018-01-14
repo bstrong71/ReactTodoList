@@ -12,6 +12,7 @@ export default class TodoList extends Component {
     };
 
     this.addItem = this.addItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   // addItem event handler
@@ -39,19 +40,37 @@ export default class TodoList extends Component {
 
   }
 
+  // deleteItem function
+  // Passing in key from the clicked item
+  deleteItem(key) {
+    // Check key against all stored items via filter method
+    // Create new array called filteredItems that contains everything except
+    // item that is being removed
+    var filteredItems = this.state.items.filter(function (item) {
+      return (item.key !== key);
+    });
+    // The filtered array is set as new items property in the state object
+    this.setState({
+      items: filteredItems
+    });
+  }
+
   render() {
     return(
       <div className='todoListMain'>
         <div className='header'>
-          {/* listen for the submit event on the form and call the addItem method.
+          {/* Listen for the submit event on the form and call the addItem method.
              Used onSubmit because button type is set to submit */}
           <form onSubmit={this.addItem}>
-            {/* store reference to input element in _inputElement property */}
+            {/* Store reference to input element in _inputElement property */}
             <input ref={(a) => this._inputElement = a} placeholder='enter task'></input>
             <button type='submit'>add</button>
           </form>
         </div>
-        <TodoItems entries={this.state.items} />
+        {/* Specify prop called delete and set it to value of function called
+            deleteItem. Ensures that TodoItems component knows about a prop
+            called delete and that delete function added to TodoList connects */}
+        <TodoItems entries={this.state.items} delete={this.deleteItem}/>
       </div>
     )
   }
