@@ -5,7 +5,6 @@ export default class TodoItems extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.createTasks = this.createTasks.bind(this);
   }
   // define function called delete that takes key as argument
   // Doesn't delete, but calls another delete function passed
@@ -14,7 +13,8 @@ export default class TodoItems extends Component {
   }
 
   // createTasks method returns list item with key and text
-  createTasks(item) {
+  // Uses arrow function that binds the function to this in the component
+  createTasks = (item) => {
     // Listen for click event and associate it with event handler called delete.
     // Using arrow function allows us to maintain both the default event argument
     // while allowing us to pass in our own arguments as well (this is a JS quirk,

@@ -10,13 +10,11 @@ export default class TodoList extends Component {
     this.state = {
       items: []
     };
-
-    this.addItem = this.addItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
   }
 
-  // addItem event handler
-  addItem(e) {
+  // addItem event handler with arrow function that binds the function to
+  // this in the component
+  addItem = (e) => {
     // declare variable itemArray to store current value
     var itemArray = this.state.items;
     // check for input element content
@@ -33,16 +31,16 @@ export default class TodoList extends Component {
       // clear _inputElement to room for next item
       this._inputElement.value = '';
     }
-    console.log('Item Array: ', itemArray);
     // Override event's default behavior. By default, when submitting a form,
     // the page reloads and clears everything out. Don't want that here!
     e.preventDefault();
 
   }
 
-  // deleteItem function
+  // deleteItem function with arrow function that binds the function to
+  // this in the component
   // Passing in key from the clicked item
-  deleteItem(key) {
+  deleteItem = (key) => {
     // Check key against all stored items via filter method
     // Create new array called filteredItems that contains everything except
     // item that is being removed
