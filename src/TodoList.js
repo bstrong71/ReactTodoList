@@ -3,8 +3,8 @@ import TodoItems from './TodoItems';
 import './TodoList.css';
 
 export default class TodoList extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     // state includes items array to store various items
     this.state = {

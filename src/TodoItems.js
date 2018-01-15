@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import FlipMove from 'react-flip-move';
 
 export default class TodoItems extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
   }
   // define function called delete that takes key as argument
